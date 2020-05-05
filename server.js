@@ -9,8 +9,9 @@ const routes = require("./routes/routes");
 
 app.use(express.urlencoded({ extended: true}));
 app.use(express.json());
+app.use(express.static("public"))
 
-app.use(routes);
+app.use('/', routes);
 
 const MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost/workout";
 
