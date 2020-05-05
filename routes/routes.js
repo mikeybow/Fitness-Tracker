@@ -1,18 +1,18 @@
 const Router = require("express").Router;
 const Workout = require("../models/workoutPlan.js");
-const path = require("path")
+
 const router = Router();
 
 router.get("/", (req, res) => {
-    res.sendfile(path.join(__dirname+'/public/index.html'))
+    res.render("index.html");
 });
 
 router.get("/exercise", (req, res) => {
-    res.sendfile(path.join(__dirname+'/public/exercise.html'))
+    res.render("exercise.html");
 });
 
 router.get("/stats", (req, res) => {
-    res.sendfile(path.join(__dirname+'/public/stats.html'))
+    res.render("stats.html");
 });
 
 router.get("/api/workouts", (req, res) => {
@@ -59,4 +59,4 @@ router.get("/api/workouts/range", (req, res) => {
     });
 });
 
-module.exports = Router
+module.exports = router;

@@ -1,5 +1,6 @@
 const express = require("express");
 const mongoose = require ("mongoose");
+const path = require("path");
 
 const PORT = process.env.PORT || 8080;
 
@@ -9,9 +10,15 @@ const routes = require("./routes/routes");
 
 app.use(express.urlencoded({ extended: true}));
 app.use(express.json());
-app.use(express.static("public"))
 
-app.use('/', routes);
+app.set('views', __dirname + '/public');
+app.engine('html', require('ejs').renderFile);
+app.set('view engine', 'html');
+
+app.use(express.static(path.join(__dirname, "/public")));
+
+
+app.use("/", routes);
 
 const MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost/workout";
 
