@@ -19,6 +19,7 @@ router.get("/api/workouts", (req, res) => {
     Workout.find({})
     .sort({ date: -1 })
     .then(workout_db => {
+        console.log(workout_db)
         res.json(workout_db);
     })
     .catch(err => {
@@ -27,7 +28,6 @@ router.get("/api/workouts", (req, res) => {
 });
 
 router.put("/api/workouts/:id", (req, res) => {
-    return
     Workout.findByIdAndUpdate(
        { _id: req.params.id }, req.body
     )
@@ -39,8 +39,11 @@ router.put("/api/workouts/:id", (req, res) => {
     });
 });
 
-router.post("/api/workouts", ({ body }, res) => {
-    Workout.save(body)
+//router.delete 
+//you will have a delete route that works similarly to your put route above 
+
+router.post("/api/workouts", (req, res) => {
+    Workout.create({})
     .then(workout_db => {
         res.json(workout_db);
     })
@@ -50,7 +53,7 @@ router.post("/api/workouts", ({ body }, res) => {
 });
 
 router.get("/api/workouts/range", (req, res) => {
-    Workout.find({})
+    Workout.find()
     .then(workout_db => {
         res.json(workout_db);
     })
